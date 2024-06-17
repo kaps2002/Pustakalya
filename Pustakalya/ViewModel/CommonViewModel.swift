@@ -12,6 +12,7 @@ import UIKit
 class CommonViewModel {
     var isAlert = false
     var booksData: BooksData?
+    var booksGenreList = ["Romance", "Science", "Anime", "Drama", "Fiction"]
     
     func checkInternet(completion: @escaping (Bool) -> Void) {
         let reachabilityManager = NetworkReachabilityManager()

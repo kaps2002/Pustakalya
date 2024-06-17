@@ -102,10 +102,9 @@
 			children = (
 				933300CC2C1EE6D3006C0B9D /* PustakalyaApp.swift */,
 				9325E79A2C20084F0013E93D /* SplashScreenView.swift */,
-				9325E7A32C2057C40013E93D /* ViewModel */,
 				9325E79C2C201DD70013E93D /* MainViews */,
 				933300DA2C1EE9F0006C0B9D /* AuthViews */,
-				933300DD2C1EEA15006C0B9D /* HelperViews */,
+				9325E7A32C2057C40013E93D /* ViewModel */,
 				933300E72C1EEEB1006C0B9D /* Managers */,
 				933300EF2C1F4E73006C0B9D /* Resources */,
 				933300D02C1EE6D4006C0B9D /* Assets.xcassets */,
@@ -128,17 +127,18 @@
 				933300DB2C1EEA08006C0B9D /* SignInView.swift */,
 				933300DF2C1EEAD7006C0B9D /* AuthViewModel.swift */,
 				933300E52C1EEBDB006C0B9D /* SignUpView.swift */,
+				933300DD2C1EEA15006C0B9D /* HelperAuthViews */,
 			);
 			path = AuthViews;
 			sourceTree = "<group>";
 		};
-		933300DD2C1EEA15006C0B9D /* HelperViews */ = {
+		933300DD2C1EEA15006C0B9D /* HelperAuthViews */ = {
 			isa = PBXGroup;
 			children = (
 				933300E12C1EEB5E006C0B9D /* EmailFieldView.swift */,
 				933300E32C1EEB6E006C0B9D /* PasswordFieldView.swift */,
 			);
-			path = HelperViews;
+			path = HelperAuthViews;
 			sourceTree = "<group>";
 		};
 		933300E72C1EEEB1006C0B9D /* Managers */ = {
