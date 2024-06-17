@@ -21,6 +21,3 @@ struct Data: Codable {
     let address: String?
 }
 
-struct BooksData: Codable {
-    
-}

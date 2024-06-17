@@ -13,7 +13,7 @@ struct HomeView: View {
     @State private var search = ""
     var body: some View {
         ZStack {
-            Color.orange.opacity(0.1)
+            Color.orange.opacity(0.15)
                 .ignoresSafeArea()
             VStack {
                 HStack {
@@ -42,8 +42,16 @@ struct HomeView: View {
                             .fontWeight(.semibold)
                     })
                 }
+                
             }
             .padding(.horizontal, 20)
+        }
+        .task {
+            commonViewModel.checkInternet() { res in
+                if res {
+                    commonViewModel.fetchBooks()
+                }
+            }
         }
     }
 }

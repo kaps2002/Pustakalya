@@ -41,4 +41,22 @@ class APIManager {
             }
         }
     }
+    
+    func fetchBooks(from url: String, completion: @escaping (Bool, BooksData?) -> Void) {
+        AF.request(url, method: .get, encoding: JSONEncoding.default).responseData { response in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let apiData = try JSONDecoder().decode(BooksData.self, from: data)
+                    completion(true, apiData)
+                } catch {
+                    print(1, error)
+                    completion(false, nil)
+                }
+            case .failure(let error):
+                print(2, error)
+                completion(false, nil)
+            }
+        }
+    }
 }
