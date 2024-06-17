@@ -90,6 +90,11 @@ struct SignUpView: View {
         .alert(isPresented: $authViewModel.isAlert, content: {
             Alert(title: Text("SignUp Unsuccessful"), message: Text("User Already Exists"), dismissButton: .default(Text("Ok")))
         })
+        .alert(isPresented: $authViewModel.commonViewModel.isAlert) {
+            Alert(title: Text("No Internet"), message: Text("Please check the internet connection"), dismissButton: .default(Text("Go to Settings ⚙️")){
+                authViewModel.commonViewModel.settingsOpener()
+            })
+        }
     }
     func submitAction() {
         let ans = authViewModel.validation(email: authViewModel.email, password: authViewModel.password)
@@ -100,18 +105,24 @@ struct SignUpView: View {
         } else if ans == 2 {
             authViewModel.isPasswordValid = false
         } else {
-            authViewModel.isLoading = true
-            authViewModel.signUp(email: authViewModel.email, password: authViewModel.password, name: authViewModel.name) { res in
-                authViewModel.isLoading = false
+            authViewModel.commonViewModel.checkInternet() { res in
                 if res {
-                    authViewModel.email = ""
-                    authViewModel.password = ""
-                    authViewModel.name = ""
+                    authViewModel.isLoading = true
+                    authViewModel.signUp(email: authViewModel.email, password: authViewModel.password, name: authViewModel.name) { res in
+                        authViewModel.isLoading = false
+                        if res {
+                            authViewModel.email = ""
+                            authViewModel.password = ""
+                            authViewModel.name = ""
+                        } else {
+                            authViewModel.email = ""
+                            authViewModel.password = ""
+                            authViewModel.name = ""
+                            authViewModel.isAlert = true
+                        }
+                    }
                 } else {
-                    authViewModel.email = ""
-                    authViewModel.password = ""
-                    authViewModel.name = ""
-                    authViewModel.isAlert = true
+                    authViewModel.commonViewModel.isAlert = true
                 }
             }
         }

@@ -3,6 +3,7 @@ import SwiftUI
 struct SignInView: View {
     @State private var authViewModel = AuthViewModel()
     @State private var isSignUpSheet = false
+
     var body: some View {
         VStack(spacing: 40) {
             VStack(spacing: 15) {
@@ -58,6 +59,11 @@ struct SignInView: View {
         .alert(isPresented: $authViewModel.isAlert, content: {
             Alert(title: Text("Login Unsuccessful"), message: Text("User dont Exists"), dismissButton: .default(Text("Ok")))
         })
+        .alert(isPresented: $authViewModel.commonViewModel.isAlert) {
+            Alert(title: Text("No Internet"), message: Text("Please check the internet connection"), dismissButton: .default(Text("Go to Settings ⚙️")){
+                authViewModel.commonViewModel.settingsOpener()
+            })
+        }
     }
     func submitAction() {
         let ans = authViewModel.validation(email: authViewModel.email, password: authViewModel.password)
@@ -66,18 +72,25 @@ struct SignInView: View {
         } else if ans == 2 {
             authViewModel.isPasswordValid = false
         } else {
-            authViewModel.isLoading = true
-            authViewModel.signin(email: authViewModel.email, password: authViewModel.password) { res in
-                authViewModel.isLoading = false
+            authViewModel.commonViewModel.checkInternet() { res in
                 if res {
-                    authViewModel.email = ""
-                    authViewModel.password = ""
+                    authViewModel.isLoading = true
+                    authViewModel.signin(email: authViewModel.email, password: authViewModel.password) { res in
+                        authViewModel.isLoading = false
+                        if res {
+                            authViewModel.email = ""
+                            authViewModel.password = ""
+                        } else {
+                            authViewModel.email = ""
+                            authViewModel.password = ""
+                            authViewModel.isAlert = true
+                        }
+                    }
                 } else {
-                    authViewModel.email = ""
-                    authViewModel.password = ""
-                    authViewModel.isAlert = true
+                    authViewModel.commonViewModel.isAlert = true
                 }
             }
+            
         }
     }
 }

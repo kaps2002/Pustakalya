@@ -12,6 +12,7 @@ class AuthViewModel {
     var isAlert: Bool = false
     var isLoading: Bool = false
     var signInModelData: SignInModelData?
+    var commonViewModel = CommonViewModel()
     
     func validation(email: String, password: String) -> Int {
         if email.isEmpty {

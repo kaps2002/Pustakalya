@@ -20,3 +20,7 @@ struct Data: Codable {
     let dob: DateComponents?
     let address: String?
 }
+
+struct BooksData: Codable {
+    
+}

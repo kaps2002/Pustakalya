@@ -4,7 +4,7 @@ import SwiftUI
 struct PustakalyaApp: App {
     var body: some Scene {
         WindowGroup {
-            SignInView()
+            SplashScreenView()
         }
     }
 }

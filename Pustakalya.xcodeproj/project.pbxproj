@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9325E79B2C20084F0013E93D /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9325E79A2C20084F0013E93D /* SplashScreenView.swift */; };
+		9325E79E2C201E300013E93D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9325E79D2C201E300013E93D /* HomeView.swift */; };
+		9325E7A02C201E410013E93D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9325E79F2C201E410013E93D /* ProfileView.swift */; };
+		9325E7A22C201E510013E93D /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9325E7A12C201E510013E93D /* FavoriteView.swift */; };
+		9325E7A52C2058060013E93D /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9325E7A42C2058060013E93D /* CommonViewModel.swift */; };
 		933300CD2C1EE6D3006C0B9D /* PustakalyaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933300CC2C1EE6D3006C0B9D /* PustakalyaApp.swift */; };
-		933300CF2C1EE6D3006C0B9D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933300CE2C1EE6D3006C0B9D /* HomeView.swift */; };
+		933300CF2C1EE6D3006C0B9D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933300CE2C1EE6D3006C0B9D /* RootView.swift */; };
 		933300D12C1EE6D4006C0B9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 933300D02C1EE6D4006C0B9D /* Assets.xcassets */; };
 		933300D42C1EE6D4006C0B9D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 933300D32C1EE6D4006C0B9D /* Preview Assets.xcassets */; };
 		933300DC2C1EEA08006C0B9D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933300DB2C1EEA08006C0B9D /* SignInView.swift */; };
@@ -23,9 +28,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9325E79A2C20084F0013E93D /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		9325E79D2C201E300013E93D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		9325E79F2C201E410013E93D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		9325E7A12C201E510013E93D /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		9325E7A42C2058060013E93D /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		933300C92C1EE6D3006C0B9D /* Pustakalya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pustakalya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		933300CC2C1EE6D3006C0B9D /* PustakalyaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PustakalyaApp.swift; sourceTree = "<group>"; };
-		933300CE2C1EE6D3006C0B9D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		933300CE2C1EE6D3006C0B9D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		933300D02C1EE6D4006C0B9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		933300D32C1EE6D4006C0B9D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		933300DB2C1EEA08006C0B9D /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -50,6 +60,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9325E79C2C201DD70013E93D /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				933300CE2C1EE6D3006C0B9D /* RootView.swift */,
+				9325E79D2C201E300013E93D /* HomeView.swift */,
+				9325E79F2C201E410013E93D /* ProfileView.swift */,
+				9325E7A12C201E510013E93D /* FavoriteView.swift */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
+		9325E7A32C2057C40013E93D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9325E7A42C2058060013E93D /* CommonViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		933300C02C1EE6D3006C0B9D = {
 			isa = PBXGroup;
 			children = (
@@ -70,7 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				933300CC2C1EE6D3006C0B9D /* PustakalyaApp.swift */,
-				933300CE2C1EE6D3006C0B9D /* HomeView.swift */,
+				9325E79A2C20084F0013E93D /* SplashScreenView.swift */,
+				9325E7A32C2057C40013E93D /* ViewModel */,
+				9325E79C2C201DD70013E93D /* MainViews */,
 				933300DA2C1EE9F0006C0B9D /* AuthViews */,
 				933300DD2C1EEA15006C0B9D /* HelperViews */,
 				933300E72C1EEEB1006C0B9D /* Managers */,
@@ -205,11 +236,16 @@
 				933300E22C1EEB5E006C0B9D /* EmailFieldView.swift in Sources */,
 				933300E02C1EEAD7006C0B9D /* AuthViewModel.swift in Sources */,
 				933300E42C1EEB6E006C0B9D /* PasswordFieldView.swift in Sources */,
+				9325E7A02C201E410013E93D /* ProfileView.swift in Sources */,
 				933300F12C1F4E83006C0B9D /* SignInModelData.swift in Sources */,
+				9325E79E2C201E300013E93D /* HomeView.swift in Sources */,
 				933300E62C1EEBDB006C0B9D /* SignUpView.swift in Sources */,
+				9325E7A22C201E510013E93D /* FavoriteView.swift in Sources */,
 				933300DC2C1EEA08006C0B9D /* SignInView.swift in Sources */,
-				933300CF2C1EE6D3006C0B9D /* HomeView.swift in Sources */,
+				9325E79B2C20084F0013E93D /* SplashScreenView.swift in Sources */,
+				933300CF2C1EE6D3006C0B9D /* RootView.swift in Sources */,
 				933300CD2C1EE6D3006C0B9D /* PustakalyaApp.swift in Sources */,
+				9325E7A52C2058060013E93D /* CommonViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
