@@ -6,6 +6,9 @@ struct SignInView: View {
 
     var body: some View {
         VStack(spacing: 40) {
+            NavigationLink(destination: HomeView(), isActive: $authViewModel.isShowNextUI) {
+                EmptyView()
+            }
             VStack(spacing: 15) {
                 Image("logo")
                     .resizable()
@@ -50,6 +53,7 @@ struct SignInView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $isSignUpSheet, content: {
             SignUpView(isSignUpSheet: $isSignUpSheet)
                 .presentationDragIndicator(.visible)
@@ -80,6 +84,7 @@ struct SignInView: View {
                         if res {
                             authViewModel.email = ""
                             authViewModel.password = ""
+                            authViewModel.isShowNextUI = true
                         } else {
                             authViewModel.email = ""
                             authViewModel.password = ""

@@ -21,6 +21,7 @@ class CommonViewModel {
             completion(isInternetConnected)
         }
     }
+    
     func settingsOpener() {
         if let url = URL(string: UIApplication.openSettingsURLString) {
             if UIApplication.shared.canOpenURL(url) {

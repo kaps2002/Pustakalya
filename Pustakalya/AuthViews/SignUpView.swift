@@ -96,6 +96,7 @@ struct SignUpView: View {
             })
         }
     }
+    
     func submitAction() {
         let ans = authViewModel.validation(email: authViewModel.email, password: authViewModel.password)
         if authViewModel.name.isEmpty {

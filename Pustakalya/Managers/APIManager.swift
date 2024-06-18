@@ -30,14 +30,28 @@ class APIManager {
         }
     }
     
-    func signupRequest(from url: String, parameters: Parameters?, completion: @escaping(Bool) -> Void) {
+    func signupRequest(from url: String, parameters: Parameters?, completion: @escaping(Bool, SignUpModelData?) -> Void) {
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
-            if let statusCode = response.response?.statusCode {
-                if (400...599).contains(statusCode) {
-                    completion(false)
-                } else {
-                    completion(true)
+//            if let statusCode = response.response?.statusCode {
+//                if (400...599).contains(statusCode) {
+//                    completion(false)
+//                } else {
+//                    completion(true)
+//                }
+//            }
+            switch response.result {
+            case .success(let data):
+                do {
+                    let apiData = try JSONDecoder().decode(SignUpModelData.self, from: data)
+                    print(apiData)
+                    completion(true, apiData)
+                } catch {
+                    print(error)
+                    completion(false, nil)
                 }
+            case .failure(let error):
+                print(error)
+                completion(false, nil)
             }
         }
     }

@@ -21,3 +21,6 @@ struct Data: Codable {
     let address: String?
 }
 
+struct SignUpModelData: Codable {
+    let token: String
+}

@@ -12,7 +12,10 @@ class AuthViewModel {
     var isAlert: Bool = false
     var isLoading: Bool = false
     var signInModelData: SignInModelData?
+    var signUp: SignUpModelData?
+
     var commonViewModel = CommonViewModel()
+    var isShowNextUI: Bool = false
     
     func validation(email: String, password: String) -> Int {
         if email.isEmpty {
@@ -40,9 +43,14 @@ class AuthViewModel {
     
     func signUp(email: String, password: String, name: String, completion: @escaping(Bool) -> Void) {
         let parameters: [String: String] = ["name": name, "email": email, "password": password]
-        APIManager.shared.signupRequest(from: "https://pustakalya.vercel.app/api/signup", parameters: parameters) { success in
+        APIManager.shared.signupRequest(from: "https://pustakalya.vercel.app/api/signup", parameters: parameters) { [self] (success: Bool, response: SignUpModelData?) in
             if success {
-                completion(true)
+                if let responseData = response {
+                    signUp = responseData
+                    print(signUp ?? "hello")
+                    completion(true)
+                }
+                
             } else {
                 completion(false)
             }
