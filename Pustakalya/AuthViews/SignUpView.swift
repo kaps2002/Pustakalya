@@ -3,8 +3,15 @@ import SwiftUI
 struct SignUpView: View {
     @State private var authViewModel = AuthViewModel()
     @Binding var isSignUpSheet: Bool
+    @State private var isVerify : Bool = false
     var body: some View {
         VStack(spacing: 40) {
+            
+            NavigationLink(destination: VerifyTokenView(), isActive: $isVerify) {
+                EmptyView()
+            }
+            .navigationBarBackButtonHidden(true)
+            
             HStack {
                 Spacer()
                 Button(action: {
@@ -56,7 +63,7 @@ struct SignUpView: View {
                 PasswordFieldView(password: $authViewModel.password, isPasswordValid: $authViewModel.isPasswordValid, isSecured: $authViewModel.isSecured, placeholder: "Your Password")
             }
             
-            Spacer()
+//            Spacer()
             
             if authViewModel.isLoading {
                 ProgressView()
@@ -106,26 +113,29 @@ struct SignUpView: View {
         } else if ans == 2 {
             authViewModel.isPasswordValid = false
         } else {
-            authViewModel.commonViewModel.checkInternet() { res in
-                if res {
-                    authViewModel.isLoading = true
-                    authViewModel.signUp(email: authViewModel.email, password: authViewModel.password, name: authViewModel.name) { res in
-                        authViewModel.isLoading = false
-                        if res {
-                            authViewModel.email = ""
-                            authViewModel.password = ""
-                            authViewModel.name = ""
-                        } else {
-                            authViewModel.email = ""
-                            authViewModel.password = ""
-                            authViewModel.name = ""
-                            authViewModel.isAlert = true
-                        }
-                    }
-                } else {
-                    authViewModel.commonViewModel.isAlert = true
-                }
-            }
+            isVerify = true
+
+//            authViewModel.commonViewModel.checkInternet() { res in
+//                if res {
+//                    authViewModel.isLoading = true
+//                    authViewModel.signUp(email: authViewModel.email, password: authViewModel.password, name: authViewModel.name) { res in
+//                        authViewModel.isLoading = false
+//                        if res {
+//                            authViewModel.email = ""
+//                            authViewModel.password = ""
+//                            authViewModel.name = ""
+//                            isSignUpSheet = true
+//                        } else {
+//                            authViewModel.email = ""
+//                            authViewModel.password = ""
+//                            authViewModel.name = ""
+//                            authViewModel.isAlert = true
+//                        }
+//                    }
+//                } else {
+//                    authViewModel.commonViewModel.isAlert = true
+//                }
+//            }
         }
     }
 }

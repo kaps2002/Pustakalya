@@ -3,12 +3,17 @@ import SwiftUI
 struct SignInView: View {
     @State private var authViewModel = AuthViewModel()
     @State private var isSignUpSheet = false
-
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
+        
         VStack(spacing: 40) {
+            
             NavigationLink(destination: HomeView(), isActive: $authViewModel.isShowNextUI) {
                 EmptyView()
             }
+            .navigationBarBackButtonHidden(true)
+            
             VStack(spacing: 15) {
                 Image("logo")
                     .resizable()
@@ -53,11 +58,10 @@ struct SignInView: View {
                 }
             }
         }
-        .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $isSignUpSheet, content: {
             SignUpView(isSignUpSheet: $isSignUpSheet)
                 .presentationDragIndicator(.visible)
-                .presentationDetents([.height(700)])
+                .presentationDetents([.height(680)])
                 .presentationCornerRadius(20.0)
         })
         .alert(isPresented: $authViewModel.isAlert, content: {
@@ -69,6 +73,11 @@ struct SignInView: View {
             })
         }
     }
+    
+    func buildView() -> some View {
+        return AnyView(HomeView())
+    }
+    
     func submitAction() {
         let ans = authViewModel.validation(email: authViewModel.email, password: authViewModel.password)
         if ans == 1 {
@@ -76,6 +85,9 @@ struct SignInView: View {
         } else if ans == 2 {
             authViewModel.isPasswordValid = false
         } else {
+//            print("chalgya hoon")
+//            authViewModel.isShowNextUI = true
+            
             authViewModel.commonViewModel.checkInternet() { res in
                 if res {
                     authViewModel.isLoading = true
@@ -95,7 +107,6 @@ struct SignInView: View {
                     authViewModel.commonViewModel.isAlert = true
                 }
             }
-            
         }
     }
 }

@@ -27,6 +27,8 @@
 		933300EE2C1F086D006C0B9D /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 933300ED2C1F086D006C0B9D /* AlamofireDynamic */; };
 		933300F12C1F4E83006C0B9D /* SignInModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933300F02C1F4E83006C0B9D /* SignInModelData.swift */; };
 		93668B842C21640E00D2D02D /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93668B832C21640E00D2D02D /* CategoryView.swift */; };
+		937CFAE52C21A83A00E2D73E /* VerifyTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CFAE42C21A83A00E2D73E /* VerifyTokenView.swift */; };
+		937CFAE72C21A96500E2D73E /* VerifyCodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CFAE62C21A96500E2D73E /* VerifyCodeInputView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		933300E82C1F070E006C0B9D /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		933300F02C1F4E83006C0B9D /* SignInModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModelData.swift; sourceTree = "<group>"; };
 		93668B832C21640E00D2D02D /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		937CFAE42C21A83A00E2D73E /* VerifyTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyTokenView.swift; sourceTree = "<group>"; };
+		937CFAE62C21A96500E2D73E /* VerifyCodeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeInputView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 				933300DB2C1EEA08006C0B9D /* SignInView.swift */,
 				933300DF2C1EEAD7006C0B9D /* AuthViewModel.swift */,
 				933300E52C1EEBDB006C0B9D /* SignUpView.swift */,
+				937CFAE42C21A83A00E2D73E /* VerifyTokenView.swift */,
 				933300DD2C1EEA15006C0B9D /* HelperAuthViews */,
 			);
 			path = AuthViews;
@@ -140,6 +145,7 @@
 			children = (
 				933300E12C1EEB5E006C0B9D /* EmailFieldView.swift */,
 				933300E32C1EEB6E006C0B9D /* PasswordFieldView.swift */,
+				937CFAE62C21A96500E2D73E /* VerifyCodeInputView.swift */,
 			);
 			path = HelperAuthViews;
 			sourceTree = "<group>";
@@ -255,12 +261,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9325E7A72C20B4040013E93D /* BooksData.swift in Sources */,
+				937CFAE72C21A96500E2D73E /* VerifyCodeInputView.swift in Sources */,
 				933300E92C1F070E006C0B9D /* APIManager.swift in Sources */,
 				933300E22C1EEB5E006C0B9D /* EmailFieldView.swift in Sources */,
 				933300E02C1EEAD7006C0B9D /* AuthViewModel.swift in Sources */,
 				933300E42C1EEB6E006C0B9D /* PasswordFieldView.swift in Sources */,
 				9325E7A02C201E410013E93D /* ProfileView.swift in Sources */,
 				93668B842C21640E00D2D02D /* CategoryView.swift in Sources */,
+				937CFAE52C21A83A00E2D73E /* VerifyTokenView.swift in Sources */,
 				933300F12C1F4E83006C0B9D /* SignInModelData.swift in Sources */,
 				9325E79E2C201E300013E93D /* HomeView.swift in Sources */,
 				933300E62C1EEBDB006C0B9D /* SignUpView.swift in Sources */,
