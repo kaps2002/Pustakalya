@@ -9,6 +9,9 @@ import SwiftUI
 
 struct VerifyTokenView: View {
     @State private var codeString = ""
+    @State private var authViewModel = AuthViewModel()
+    @Binding var isSignUpSheet: Bool
+
     var body: some View {
         VStack {
             Image("logo")
@@ -28,7 +31,15 @@ struct VerifyTokenView: View {
             
             VStack(spacing: 15) {
                 Button(action: {
-                    
+                    authViewModel.isLoading = true
+                    authViewModel.verifyCode(code: codeString, authToken: authViewModel.signUpModelData?.token ?? "") { result in
+                        authViewModel.isLoading = false
+                        if result {
+                            isSignUpSheet = false
+                        } else {
+                            authViewModel.isAlert = true
+                        }
+                    }
                 }, label: {
                     Text("Verify and SignUp")
                         .font(.title3)
@@ -40,11 +51,22 @@ struct VerifyTokenView: View {
                 })
             }
             .padding(.top, 30)
+            .alert(isPresented: $authViewModel.isAlert, content: {
+                Alert(title: Text("Verification Unsuccessful"), message: Text("Otp is invalid"), dismissButton: .default(Text("Ok")))
+            })
+            
+            if authViewModel.isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .padding(.top, 20)
+            }
+            
         }
-        
+        .navigationBarBackButtonHidden(true)
+
     }
 }
 
 #Preview {
-    VerifyTokenView()
+    VerifyTokenView(isSignUpSheet: .constant(false))
 }

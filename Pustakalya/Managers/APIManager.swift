@@ -32,13 +32,6 @@ class APIManager {
     
     func signupRequest(from url: String, parameters: Parameters?, completion: @escaping(Bool, SignUpModelData?) -> Void) {
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
-//            if let statusCode = response.response?.statusCode {
-//                if (400...599).contains(statusCode) {
-//                    completion(false)
-//                } else {
-//                    completion(true)
-//                }
-//            }
             switch response.result {
             case .success(let data):
                 do {
@@ -52,6 +45,20 @@ class APIManager {
             case .failure(let error):
                 print(error)
                 completion(false, nil)
+            }
+        }
+    }
+    
+    func verifyEmail(from url: String, method: HTTPMethod = .post, _ authToken: String, parameters: Parameters?, completion: @escaping (Bool) -> Void) {
+        AF.request(url, method: .post, parameters: parameters, headers: ["Authorization": "Bearer \(authToken)"]).responseData { response in
+            if let statusCode = response.response?.statusCode {
+                print(statusCode)
+                if (400...599).contains(statusCode) {
+                    completion(false)
+                }
+                else {
+                    completion(true)
+                }
             }
         }
     }

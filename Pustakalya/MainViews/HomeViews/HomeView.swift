@@ -29,6 +29,7 @@ struct HomeView: View {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black.opacity(0.8))
                         TextField("Search Books", text: $search)
+                            .keyboardType(.default)
                     }
                     .padding(8)
                     .background(.gray.opacity(0.2))
@@ -52,11 +53,12 @@ struct HomeView: View {
             .padding(.horizontal, 20)
             .padding(.top, 10)
         }
+        .navigationBarBackButtonHidden(true)
         .fontDesign(.rounded)
         .task {
             commonViewModel.checkInternet() { res in
                 if res {
-//                    commonViewModel.fetchBooks()
+                    //ommonViewModel.fetchBooks()
                 }
             }
         }
