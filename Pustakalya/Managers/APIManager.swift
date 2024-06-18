@@ -36,7 +36,6 @@ class APIManager {
             case .success(let data):
                 do {
                     let apiData = try JSONDecoder().decode(SignUpModelData.self, from: data)
-                    print(apiData)
                     completion(true, apiData)
                 } catch {
                     print(error)
@@ -50,9 +49,8 @@ class APIManager {
     }
     
     func verifyEmail(from url: String, method: HTTPMethod = .post, _ authToken: String, parameters: Parameters?, completion: @escaping (Bool) -> Void) {
-        AF.request(url, method: .post, parameters: parameters, headers: ["Authorization": "Bearer \(authToken)"]).responseData { response in
+        AF.request(url, method: .post, parameters: parameters,encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization": "Bearer \(authToken)"]).responseData { response in
             if let statusCode = response.response?.statusCode {
-                print(statusCode)
                 if (400...599).contains(statusCode) {
                     completion(false)
                 }
@@ -71,11 +69,9 @@ class APIManager {
                     let apiData = try JSONDecoder().decode(BooksData.self, from: data)
                     completion(true, apiData)
                 } catch {
-                    print(1, error)
                     completion(false, nil)
                 }
             case .failure(let error):
-                print(2, error)
                 completion(false, nil)
             }
         }

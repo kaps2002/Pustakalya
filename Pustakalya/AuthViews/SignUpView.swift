@@ -8,7 +8,7 @@ struct SignUpView: View {
             VStack(spacing: 40) {
                 
                 NavigationLink(
-                    destination: VerifyTokenView(isSignUpSheet: $authViewModel.isSignUpSheet),
+                    destination: VerifyTokenView(isSignUpSheet: $isSignUpSheet),
                     isActive: $authViewModel.isShowNextUI
                 ) {
                     EmptyView()

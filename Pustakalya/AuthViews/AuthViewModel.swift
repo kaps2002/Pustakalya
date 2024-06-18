@@ -13,7 +13,6 @@ class AuthViewModel {
     var isLoading: Bool = false
     var signInModelData: SignInModelData?
     var signUpModelData : SignUpModelData?
-    var isSignUpSheet = false
     var commonViewModel = CommonViewModel()
     var isShowNextUI: Bool = false
     var timeRemaining = 30
@@ -50,6 +49,7 @@ class AuthViewModel {
             if success {
                 if let responseData = response {
                     signUpModelData = responseData
+                    UserDefaults.standard.setValue(signUpModelData?.token, forKey: "authToken")
                     completion(true)
                 }
                 
@@ -60,7 +60,7 @@ class AuthViewModel {
     }
     
     func verifyCode(code: String, authToken: String, completion: @escaping(Bool)->Void) {
-        let parameters = ["code": code]
+        let parameters: [String: String] = ["code": code]
         APIManager.shared.verifyEmail(from: "https://pustakalya.vercel.app/api/verify", authToken, parameters: parameters) { result in
             if result {
                 completion(true)

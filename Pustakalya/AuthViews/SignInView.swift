@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SignInView: View {
     @State private var authViewModel = AuthViewModel()
-//    @State private var isSignUpSheet = false
+    @State private var isSignUpSheet = false
     
     var body: some View {
         NavigationView {
@@ -45,7 +45,7 @@ struct SignInView: View {
                     HStack(spacing: 4) {
                         Text("Don't have an account yet?")
                         Button(action: {
-                            authViewModel.isSignUpSheet = true
+                            isSignUpSheet = true
                         }, label: {
                             Text("Sign Up")
                                 .fontWeight(.semibold)
@@ -59,8 +59,8 @@ struct SignInView: View {
                     }
                 }
             }
-            .sheet(isPresented: $authViewModel.isSignUpSheet, content: {
-                SignUpView(isSignUpSheet: $authViewModel.isSignUpSheet)
+            .sheet(isPresented: $isSignUpSheet, content: {
+                SignUpView(isSignUpSheet: $isSignUpSheet)
                     .presentationDragIndicator(.visible)
                     .presentationDetents([.height(680)])
                     .presentationCornerRadius(20.0)

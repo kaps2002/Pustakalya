@@ -32,7 +32,7 @@ struct VerifyTokenView: View {
             VStack(spacing: 15) {
                 Button(action: {
                     authViewModel.isLoading = true
-                    authViewModel.verifyCode(code: codeString, authToken: authViewModel.signUpModelData?.token ?? "") { result in
+                    authViewModel.verifyCode(code: codeString, authToken: UserDefaults.standard.string(forKey: "authToken") ?? "") { result in
                         authViewModel.isLoading = false
                         if result {
                             isSignUpSheet = false
