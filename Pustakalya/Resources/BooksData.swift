@@ -12,24 +12,21 @@ struct BooksData: Codable {
 }
 
 struct Genre: Codable {
-    let items: [Book]
+    let genre: String
+    let books: [Book]
 }
 
 struct Book: Codable {
     let id: String
-    let etag: String
-    let volumeInfo: VolumeInfo
-}
-
-struct VolumeInfo: Codable {
+    let eTag: String
     let title: String
-    let authors: [String]?
-    let description: String?
-    let imageLinks: ImageLinks?
-    
+    let subtitle: String
+    let genreType: String
+    let author: String
+    let description: String
+    let thumbnail: String
+    let rating: String
+    let price: Int
 }
 
-struct ImageLinks: Codable {
-    let thumbnail: String
-}
 

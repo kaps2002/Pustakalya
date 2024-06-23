@@ -58,7 +58,7 @@ struct HomeView: View {
         .task {
             commonViewModel.checkInternet() { res in
                 if res {
-                    //ommonViewModel.fetchBooks()
+                    commonViewModel.fetchBooks()
                 }
             }
         }

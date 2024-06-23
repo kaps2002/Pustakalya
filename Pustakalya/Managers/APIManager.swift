@@ -67,11 +67,14 @@ class APIManager {
             case .success(let data):
                 do {
                     let apiData = try JSONDecoder().decode(BooksData.self, from: data)
+                    print(apiData)
                     completion(true, apiData)
                 } catch {
+                    print(error,1)
                     completion(false, nil)
                 }
             case .failure(let error):
+                print(error,2)
                 completion(false, nil)
             }
         }
