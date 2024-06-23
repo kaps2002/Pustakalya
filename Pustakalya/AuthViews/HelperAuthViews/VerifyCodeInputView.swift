@@ -46,7 +46,7 @@ struct VerifyCodeInputView: View {
                 .cornerRadius(5.0)
                 .focused($fieldFocus, equals: index)
                 .tag(index)
-                .onChange(of: code[index]) { newValue in
+                .onChange(of: code[index]) { newValue, _ in
                     codeString = getCodeJoined()
                     if code[index].count > 1 {
                         let currentValue = Array(code[index])

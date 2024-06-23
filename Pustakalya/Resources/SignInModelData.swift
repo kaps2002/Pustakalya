@@ -7,20 +7,19 @@
 
 import Foundation
 
-struct SignInModelData: Codable {
+struct AuthModelData: Codable {
     let message: String
     let success: Bool
-    let data: Data
     let token: String
 }
 
-struct Data: Codable {
+
+
+struct Userdata: Codable {
     let name: String
     let email: String
     let dob: DateComponents?
     let address: String?
 }
 
-struct SignUpModelData: Codable {
-    let token: String
-}
+

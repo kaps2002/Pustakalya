@@ -11,8 +11,8 @@ class AuthViewModel {
     var isNameValid: Bool = true
     var isAlert: Bool = false
     var isLoading: Bool = false
-    var signInModelData: SignInModelData?
-    var signUpModelData : SignUpModelData?
+    var signInModelData: AuthModelData?
+    var signUpModelData : AuthModelData?
     var commonViewModel = CommonViewModel()
     var isShowNextUI: Bool = false
     var timeRemaining = 30
@@ -30,11 +30,12 @@ class AuthViewModel {
     
     func signin(email: String, password: String, completion: @escaping (Bool) -> Void) {
         let parameters: [String: String] = ["email": email, "password": password]
-        APIManager.shared.request(from: "https://pustakalya.vercel.app/api/login", parameters: parameters) { [self] (success: Bool, response: SignInModelData?) in
+        APIManager.shared.request(from: "https://pustakalya.vercel.app/api/login", parameters: parameters) { [self] (success: Bool, response: AuthModelData?) in
             if success {
                 // Handle successful response
                 if let responseData = response {
                     signInModelData = responseData
+                    UserDefaults.standard.setValue(signInModelData?.token, forKey: "authToken")
                     completion(true)
                 }
             } else {
@@ -45,7 +46,7 @@ class AuthViewModel {
     
     func signUp(email: String, password: String, name: String, completion: @escaping(Bool) -> Void) {
         let parameters: [String: String] = ["name": name, "email": email, "password": password]
-        APIManager.shared.signupRequest(from: "https://pustakalya.vercel.app/api/signup", parameters: parameters) { [self] (success: Bool, response: SignUpModelData?) in
+        APIManager.shared.signupRequest(from: "https://pustakalya.vercel.app/api/signup", parameters: parameters) { [self] (success: Bool, response: AuthModelData?) in
             if success {
                 if let responseData = response {
                     signUpModelData = responseData

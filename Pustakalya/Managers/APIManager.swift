@@ -11,12 +11,12 @@ import Alamofire
 class APIManager {
     static let shared = APIManager()
     
-    func request<T: Decodable> (from url: String, method: HTTPMethod = .post, parameters: Parameters?, completion: @escaping (Bool, T?) -> Void) {
+    func request (from url: String, method: HTTPMethod = .post, parameters: Parameters?, completion: @escaping (Bool, AuthModelData?) -> Void) {
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
             switch response.result {
             case .success(let data):
                 do {
-                    let apiData = try JSONDecoder().decode(T.self, from: data)
+                    let apiData = try JSONDecoder().decode(AuthModelData.self, from: data)
                     print(apiData)
                     completion(true, apiData)
                 } catch {
@@ -30,12 +30,12 @@ class APIManager {
         }
     }
     
-    func signupRequest(from url: String, parameters: Parameters?, completion: @escaping(Bool, SignUpModelData?) -> Void) {
+    func signupRequest(from url: String, parameters: Parameters?, completion: @escaping(Bool, AuthModelData?) -> Void) {
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
             switch response.result {
             case .success(let data):
                 do {
-                    let apiData = try JSONDecoder().decode(SignUpModelData.self, from: data)
+                    let apiData = try JSONDecoder().decode(AuthModelData.self, from: data)
                     completion(true, apiData)
                 } catch {
                     print(error)
@@ -61,8 +61,8 @@ class APIManager {
         }
     }
     
-    func fetchBooks(from url: String, completion: @escaping (Bool, BooksData?) -> Void) {
-        AF.request(url, method: .get, encoding: JSONEncoding.default).responseData { response in
+    func fetchBooks(from url: String, authToken: String, completion: @escaping (Bool, BooksData?) -> Void) {
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization": "Bearer \(authToken)"]).responseData { response in
             switch response.result {
             case .success(let data):
                 do {
@@ -77,6 +77,12 @@ class APIManager {
                 print(error,2)
                 completion(false, nil)
             }
+        }
+    }
+    
+    func getUser(from url: String, authToken: String, completion: @escaping (Bool, BooksData?) -> Void) {
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization": "Bearer \(authToken)"]).responseData { response in
+            
         }
     }
 }

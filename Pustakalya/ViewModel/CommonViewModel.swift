@@ -30,7 +30,7 @@ class CommonViewModel {
         }
     }
     func fetchBooks() {
-        APIManager.shared.fetchBooks(from: "https://pustakalya.vercel.app/api/getBooks") { [self] (success: Bool, response: BooksData?) in
+        APIManager.shared.fetchBooks(from: "https://pustakalya.vercel.app/api/getBooks", authToken: UserDefaults.standard.string(forKey: "authToken") ?? "") { [self] (success: Bool, response: BooksData?) in
             if success {
                 // Handle successful response
                 if let responseData = response {
@@ -40,6 +40,12 @@ class CommonViewModel {
             } else {
                 print("data nhi aaya")
             }
+        }
+    }
+    
+    func getUser() {
+        APIManager.shared.getUser(from: "https://pustakalya.vercel.app/api/getUserDetails", authToken: UserDefaults.standard.string(forKey: "authToken") ?? "") { (success: Bool, response: BooksData?) in
+            
         }
     }
 }

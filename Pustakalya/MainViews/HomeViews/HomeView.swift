@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    var signInModelData: SignInModelData?
+    var user: Userdata?
     @State private var commonViewModel = CommonViewModel()
     @State private var search = ""
     var body: some View {
@@ -17,7 +17,7 @@ struct HomeView: View {
                 .ignoresSafeArea()
             ScrollView {
                 HStack {
-                    Text("Welcome \(signInModelData?.data.name ?? "Karan") 👋")
+                    Text("Welcome \(user?.name ?? "Karan") 👋")
                         .font(.system(.title))
                         .fontWeight(.semibold)
                         .fontDesign(.rounded)
