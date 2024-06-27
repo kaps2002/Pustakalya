@@ -13,13 +13,14 @@ struct AuthModelData: Codable {
     let token: String
 }
 
-
-
 struct Userdata: Codable {
-    let name: String
-    let email: String
-    let dob: DateComponents?
-    let address: String?
+    let data: Data
+    struct Data: Codable {
+        let name: String
+        let email: String
+        let dob: DateComponents?
+        let address: String?
+    }
 }
 
 

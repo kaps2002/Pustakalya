@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct CategoryView: View {
+struct GenreView: View {
     var subTitle: String
+    var booksGenreList: [String]
     
-    @State private var commonViewModel = CommonViewModel()
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {
@@ -18,25 +18,29 @@ struct CategoryView: View {
                     .font(.title3)
                     .fontWeight(.semibold)
                 Spacer()
-                Button(action: {}, label: {
+                NavigationLink {
+                    AllGenreView(booksGenreList: booksGenreList)
+                } label: {
                     HStack {
                         Text("See All")
                         Image(systemName: "chevron.right")
                             .imageScale(.small)
                     }
-                })
+                    .foregroundColor(.blue)
+                }
             }
+            
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
-                    ForEach(0..<commonViewModel.booksGenreList.count) { index in
+                    ForEach(booksGenreList.dropLast(5), id: \.self) { bookgenre in
                         Button(action: {}, label: {
                             ZStack {
-                                Image(commonViewModel.booksGenreList[index])
+                                Image(bookgenre)
                                     .resizable()
                                     .opacity(0.9)
                                     .frame(width: 160, height: 80)
                                     .cornerRadius(10.0)
-                                Text(commonViewModel.booksGenreList[index])
+                                Text(bookgenre)
                                     .foregroundStyle(.white)
                                     .font(.title2)
                                     .fontWeight(.bold)
@@ -49,11 +53,12 @@ struct CategoryView: View {
             .onAppear {
                 UIScrollView.appearance().bounces = false
             }
+            
         }
         .padding(.top, 10)
     }
 }
 
 #Preview {
-    CategoryView(subTitle: "Explore")
+    GenreView(subTitle: "Explore", booksGenreList: ["Science"])
 }

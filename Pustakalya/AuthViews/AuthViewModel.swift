@@ -15,9 +15,6 @@ class AuthViewModel {
     var signUpModelData : AuthModelData?
     var commonViewModel = CommonViewModel()
     var isShowNextUI: Bool = false
-    var timeRemaining = 30
-    var isActive = false
-    var timer: Timer?
     
     func validation(email: String, password: String) -> Int {
         if email.isEmpty {

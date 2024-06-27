@@ -17,7 +17,6 @@ class APIManager {
             case .success(let data):
                 do {
                     let apiData = try JSONDecoder().decode(AuthModelData.self, from: data)
-                    print(apiData)
                     completion(true, apiData)
                 } catch {
                     print(error)
@@ -67,7 +66,6 @@ class APIManager {
             case .success(let data):
                 do {
                     let apiData = try JSONDecoder().decode(BooksData.self, from: data)
-                    print(apiData)
                     completion(true, apiData)
                 } catch {
                     print(error,1)
@@ -80,9 +78,21 @@ class APIManager {
         }
     }
     
-    func getUser(from url: String, authToken: String, completion: @escaping (Bool, BooksData?) -> Void) {
+    func getUser(from url: String, authToken: String, completion: @escaping (Bool, Userdata?) -> Void) {
         AF.request(url, method: .get, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization": "Bearer \(authToken)"]).responseData { response in
-            
+            switch response.result {
+            case .success(let data):
+                do {
+                    let apiData = try JSONDecoder().decode(Userdata.self, from: data)
+                    completion(true, apiData)
+                } catch {
+                    print(error,1)
+                    completion(false, nil)
+                }
+            case .failure(let error):
+                print(error,2)
+                completion(false, nil)
+            }
         }
     }
 }

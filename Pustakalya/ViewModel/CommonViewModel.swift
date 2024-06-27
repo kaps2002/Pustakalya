@@ -8,11 +8,10 @@
 import Foundation
 import Alamofire
 import UIKit
+
 @Observable
 class CommonViewModel {
     var isAlert = false
-    var booksData: BooksData?
-    var booksGenreList = ["Romance", "Science", "Anime", "Drama", "Fiction"]
     
     func checkInternet(completion: @escaping (Bool) -> Void) {
         let reachabilityManager = NetworkReachabilityManager()
@@ -27,25 +26,6 @@ class CommonViewModel {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
-        }
-    }
-    func fetchBooks() {
-        APIManager.shared.fetchBooks(from: "https://pustakalya.vercel.app/api/getBooks", authToken: UserDefaults.standard.string(forKey: "authToken") ?? "") { [self] (success: Bool, response: BooksData?) in
-            if success {
-                // Handle successful response
-                if let responseData = response {
-                    booksData = responseData
-                    print(booksData ?? "hello")
-                }
-            } else {
-                print("data nhi aaya")
-            }
-        }
-    }
-    
-    func getUser() {
-        APIManager.shared.getUser(from: "https://pustakalya.vercel.app/api/getUserDetails", authToken: UserDefaults.standard.string(forKey: "authToken") ?? "") { (success: Bool, response: BooksData?) in
-            
         }
     }
 }
