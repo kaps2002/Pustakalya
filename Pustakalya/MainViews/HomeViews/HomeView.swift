@@ -1,10 +1,3 @@
-//
-//  HomeView.swift
-//  Pustakalya
-//
-//  Created by Roro on 17/06/24.
-//
-
 import SwiftUI
 
 struct HomeView: View {
@@ -48,8 +41,13 @@ struct HomeView: View {
                     }
                     
                     GenreView(subTitle: "Explore All Genres", booksGenreList: homeViewModel.booksGenreList)
-                    GenreView(subTitle: "Science 🚀", booksGenreList: homeViewModel.booksGenreList)
-                    GenreView(subTitle: "Psychology 🧠", booksGenreList: homeViewModel.booksGenreList)
+                    
+                    VStack {
+                        ForEach(homeViewModel.booksData?.data.dropLast(5) ?? [], id: \.genre) { genre in
+                            CategoryView(genre: genre)
+                        }
+                    }
+                    
                 }
                 .onAppear {
                     UIScrollView.appearance().bounces = false

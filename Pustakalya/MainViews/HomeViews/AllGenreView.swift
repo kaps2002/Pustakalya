@@ -1,10 +1,3 @@
-//
-//  AllGenreView.swift
-//  Pustakalya
-//
-//  Created by Roro on 27/06/24.
-//
-
 import SwiftUI
 
 struct AllGenreView: View {

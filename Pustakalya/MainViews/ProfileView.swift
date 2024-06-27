@@ -1,10 +1,3 @@
-//
-//  ProfileView.swift
-//  Pustakalya
-//
-//  Created by Roro on 17/06/24.
-//
-
 import SwiftUI
 
 struct ProfileView: View {

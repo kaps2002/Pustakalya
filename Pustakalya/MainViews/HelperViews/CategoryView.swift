@@ -1,18 +1,16 @@
 import SwiftUI
 
-struct GenreView: View {
-    var subTitle: String
-    var booksGenreList: [String]
-    
+struct CategoryView: View {
+    var genre: Genre
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {
-                Text(subTitle)
+                Text(genre.genre)
                     .font(.title3)
                     .fontWeight(.semibold)
                 Spacer()
                 NavigationLink {
-                    AllGenreView(booksGenreList: booksGenreList)
+                    
                 } label: {
                     HStack {
                         Text("See All")
@@ -25,20 +23,18 @@ struct GenreView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
-                    ForEach(booksGenreList.dropLast(5), id: \.self) { bookgenre in
-                        Button(action: {}, label: {
-                            ZStack {
-                                Image(bookgenre)
-                                    .resizable()
-                                    .opacity(0.9)
-                                    .frame(width: 160, height: 80)
+                    ForEach(genre.books, id: \.id) { bookgenre in
+                        NavigationLink {
+                            
+                        } label: {
+                            VStack {
+                                AsyncImageView(bookImg: bookgenre.thumbnail)
                                     .cornerRadius(10.0)
-                                Text(bookgenre)
-                                    .foregroundStyle(.white)
-                                    .font(.title2)
-                                    .fontWeight(.bold)
+                                Text(bookgenre.title)
+                                    .foregroundStyle(.black)
+                                    .font(.caption)
                             }
-                        })
+                        }
                     }
                 }
                 .padding(.top, 10)
@@ -53,5 +49,5 @@ struct GenreView: View {
 }
 
 #Preview {
-    GenreView(subTitle: "Explore", booksGenreList: ["Science"])
+    CategoryView(genre: Genre(genre: "Fiction", books: [Book(id: "1", eTag: "abcd", title: "hello", subtitle: "world", genreType: "Fiction", author: "karan", description: "", thumbnail: "https://books.google.com/books/content?id=dFw6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", rating: "4.5", price: 10)]))
 }

@@ -1,10 +1,3 @@
-//
-//  HomeViewModel.swift
-//  Pustakalya
-//
-//  Created by Roro on 23/06/24.
-//
-
 import Foundation
 
 @Observable
