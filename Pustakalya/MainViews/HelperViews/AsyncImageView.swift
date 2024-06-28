@@ -19,7 +19,7 @@ struct AsyncImageView: View {
                         .frame(width: 140, height: 200)
                         .cornerRadius(10.0)
                 } placeholder: {
-                    EmptyView()
+                    ProgressView()
                 }
             }
         } else {

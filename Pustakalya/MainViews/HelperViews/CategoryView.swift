@@ -27,12 +27,16 @@ struct CategoryView: View {
                         NavigationLink {
                             
                         } label: {
-                            VStack {
+                            VStack(alignment: .center, spacing: 10) {
                                 AsyncImageView(bookImg: bookgenre.thumbnail)
-//                                Text(bookgenre.title)
-//                                    .foregroundStyle(.black)
-//                                    .font(.caption)
+                                Text(bookgenre.title)
+                                    .foregroundStyle(.black)
+                                    .font(.caption)
+                                    .fontWeight(.semibold)
+                                    .multilineTextAlignment(.center)
+                                    .lineLimit(2)
                             }
+                            .frame(width: 150)
                         }
                     }
                 }
@@ -44,6 +48,7 @@ struct CategoryView: View {
             
         }
         .padding(.top, 10)
+
     }
 }
 

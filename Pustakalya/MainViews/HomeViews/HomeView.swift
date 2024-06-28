@@ -43,8 +43,7 @@ struct HomeView: View {
                     
                     VStack {
                         ForEach(homeViewModel.booksData?.data.dropLast(5) ?? [], id: \.genre) { genre in
-                            CategoryView(genre: genre)
-
+                            CategoryView(genre: genre) 
                         }
                     }
                     
@@ -53,11 +52,9 @@ struct HomeView: View {
                     UIScrollView.appearance().bounces = false
                 }
                 .padding(.horizontal, 20)
-                .padding(.top, 10)
             }
             .redacted(reason: homeViewModel.booksData == nil ? .placeholder : [])
-
-//            .searchable(text: $homeViewModel.searchTerm, prompt: "Search")
+            // .searchable(text: $homeViewModel.searchTerm, prompt: "Search")
             .navigationBarBackButtonHidden(true)
             .fontDesign(.rounded)
             .task {
