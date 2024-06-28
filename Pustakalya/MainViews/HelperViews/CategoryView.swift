@@ -22,17 +22,16 @@ struct CategoryView: View {
             }
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
-                    ForEach(genre.books, id: \.id) { bookgenre in
+                HStack(spacing: 15) {
+                    ForEach(genre.books.dropFirst(5), id: \.id) { bookgenre in
                         NavigationLink {
                             
                         } label: {
                             VStack {
                                 AsyncImageView(bookImg: bookgenre.thumbnail)
-                                    .cornerRadius(10.0)
-                                Text(bookgenre.title)
-                                    .foregroundStyle(.black)
-                                    .font(.caption)
+//                                Text(bookgenre.title)
+//                                    .foregroundStyle(.black)
+//                                    .font(.caption)
                             }
                         }
                     }
@@ -49,5 +48,5 @@ struct CategoryView: View {
 }
 
 #Preview {
-    CategoryView(genre: Genre(genre: "Fiction", books: [Book(id: "1", eTag: "abcd", title: "hello", subtitle: "world", genreType: "Fiction", author: "karan", description: "", thumbnail: "https://books.google.com/books/content?id=dFw6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", rating: "4.5", price: 10)]))
+    CategoryView(genre: Genre(genre: "Fiction", books: [Book(id: "1", eTag: "abcd", title: "hello", subtitle: "world", genreType: "Fiction", author: "karan", description: "", thumbnail: "http://books.google.com/books/content?id=dFw6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", rating: "4.5", price: 10), Book(id: "1", eTag: "abcd", title: "hello", subtitle: "world", genreType: "Fiction", author: "karan", description: "", thumbnail: "http://books.google.com/books/content?id=dFw6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", rating: "4.5", price: 10)]))
 }

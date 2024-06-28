@@ -3,7 +3,6 @@ import SwiftUI
 struct HomeView: View {
     @State private var homeViewModel = HomeViewModel()
     @State private var commonViewModel = CommonViewModel()
-    
     @State private var search = ""
     var body: some View {
         NavigationView {
@@ -45,6 +44,7 @@ struct HomeView: View {
                     VStack {
                         ForEach(homeViewModel.booksData?.data.dropLast(5) ?? [], id: \.genre) { genre in
                             CategoryView(genre: genre)
+
                         }
                     }
                     
@@ -55,6 +55,8 @@ struct HomeView: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 10)
             }
+            .redacted(reason: homeViewModel.booksData == nil ? .placeholder : [])
+
 //            .searchable(text: $homeViewModel.searchTerm, prompt: "Search")
             .navigationBarBackButtonHidden(true)
             .fontDesign(.rounded)
