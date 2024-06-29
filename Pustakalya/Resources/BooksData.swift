@@ -8,7 +8,7 @@
 import Foundation
 
 struct BooksData: Codable {
-    let data: [Genre]
+    var data: [Genre]
     
     static var sample: BooksData {
         return BooksData(data: [Genre(genre: "Fiction", books: [Book(id: "1", eTag: "abcd", title: "Harry", subtitle: "Potter", genreType: "Fiction", author: "JK Rowling", description: "Harry potter is nice", thumbnail: "", rating: "4.5", price: 500)])])
@@ -16,21 +16,21 @@ struct BooksData: Codable {
 }
 
 struct Genre: Codable {
-    let genre: String
-    let books: [Book]
+    var genre: String
+    var books: [Book]
 }
 
 struct Book: Codable {
-    let id: String
-    let eTag: String
-    let title: String
-    let subtitle: String
-    let genreType: String
-    let author: String
-    let description: String
-    let thumbnail: String
-    let rating: String
-    let price: Int
+    var id: String
+    var eTag: String
+    var title: String
+    var subtitle: String
+    var genreType: String
+    var author: String
+    var description: String
+    var thumbnail: String
+    var rating: String
+    var price: Int
 }
 
 
