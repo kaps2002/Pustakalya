@@ -9,6 +9,10 @@ import Foundation
 
 struct BooksData: Codable {
     let data: [Genre]
+    
+    static var sample: BooksData {
+        return BooksData(data: [Genre(genre: "Fiction", books: [Book(id: "1", eTag: "abcd", title: "Harry", subtitle: "Potter", genreType: "Fiction", author: "JK Rowling", description: "Harry potter is nice", thumbnail: "", rating: "4.5", price: 500)])])
+    }
 }
 
 struct Genre: Codable {

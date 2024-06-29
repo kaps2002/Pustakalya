@@ -42,10 +42,15 @@ struct HomeView: View {
                     GenreView(subTitle: "Explore All Genres", booksGenreList: homeViewModel.booksGenreList)
                     
                     VStack {
-                        ForEach(homeViewModel.booksData?.data.dropLast(5) ?? [], id: \.genre) { genre in
-                            CategoryView(genre: genre) 
+                        ForEach(homeViewModel.booksData?.data.dropFirst(7) ?? [], id: \.genre) { genre in
+                            CategoryView(genre: genre)
                         }
                     }
+                
+                    Divider()
+                        .padding(.top, 10)
+                    
+                    AllBooksView(booksData: homeViewModel.booksData ?? BooksData.sample)
                     
                 }
                 .onAppear {

@@ -13,7 +13,7 @@ struct CategoryView: View {
                     
                 } label: {
                     HStack {
-                        Text("See All")
+                        Text("More")
                         Image(systemName: "chevron.right")
                             .imageScale(.small)
                     }
@@ -22,8 +22,8 @@ struct CategoryView: View {
             }
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 15) {
-                    ForEach(genre.books.dropFirst(5), id: \.id) { bookgenre in
+                HStack(spacing: 20) {
+                    ForEach(genre.books.dropLast(5), id: \.id) { bookgenre in
                         NavigationLink {
                             
                         } label: {
@@ -36,7 +36,7 @@ struct CategoryView: View {
                                     .multilineTextAlignment(.center)
                                     .lineLimit(2)
                             }
-                            .frame(width: 150)
+                            .frame(width: 150, height: 225)
                         }
                     }
                 }

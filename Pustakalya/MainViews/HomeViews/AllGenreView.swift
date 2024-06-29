@@ -5,7 +5,7 @@ struct AllGenreView: View {
     
     var body: some View {
         ZStack {
-            Color.orange.opacity(0.5)
+            Color.orange.opacity(0.15)
                 .ignoresSafeArea()
             VStack(alignment: .leading, spacing: 10) {
                 Text("Select your Genre")
