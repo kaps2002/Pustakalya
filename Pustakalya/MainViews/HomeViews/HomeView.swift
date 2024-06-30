@@ -50,7 +50,7 @@ struct HomeView: View {
                     Divider()
                         .padding(.top, 10)
                     
-                    AllBooksView(booksData: homeViewModel.booksData ?? BooksData.sample, btnGenre: homeViewModel.btnGenreList)
+                    AllBooksView(booksData: homeViewModel.booksData ?? BooksData.sample, btnGenreList: $homeViewModel.btnGenreList)
                     
                 }
                 .onAppear {

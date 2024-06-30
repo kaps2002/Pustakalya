@@ -4,9 +4,11 @@ struct AllBooksView: View {
     
     @State private var homeViewModel = HomeViewModel()
     var booksData: BooksData
-    var btnGenre: [Btn]
+    @Binding var btnGenreList: [Btn]
     @State private var filters: Set<String> = []
-    
+    @State private var isClick: Bool = false
+//    @State private var btngenre: Btn?
+//
     var filteredBooks: [Genre] {
         guard !filters.isEmpty else {
             return booksData.data
@@ -24,27 +26,43 @@ struct AllBooksView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
                     Button(action: {
+                        isClick.toggle()
+                        removeFilters(btnGenreList)
                         filters = []
                     }, label: {
                         Text("All Categories")
                             .padding([.top, .bottom], 10)
                             .padding(.horizontal, 20)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(isClick ? .white : .blue)
                             .fontWeight(.medium)
-                            .background(.blue)
+                            .background(isClick ? .blue : .white)
                             .clipShape(Capsule())
                     })
-                    ForEach(btnGenre, id: \.btnTitle) { btnGenre in
+                    ForEach($btnGenreList, id: \.btnTitle) { $btnGenre in
                         Button(action: {
+                            btnGenre.isClicked = true
                             filters.insert(btnGenre.btnTitle)
                         }, label: {
-                            Text(btnGenre.btnTitle)
-                                .padding([.top, .bottom], 10)
-                                .padding(.horizontal, 20)
-                                .foregroundStyle(.white)
-                                .fontWeight(.medium)
-                                .background(.blue)
-                                .clipShape(Capsule())
+                            HStack {
+                                Text(btnGenre.btnTitle)
+                                if btnGenre.isClicked {
+                                    Button(action: {
+                                        btnGenre.isClicked = false
+                                        filters.remove(btnGenre.btnTitle)
+                                    }, label: {
+                                        Image(systemName: "xmark")
+                                            .imageScale(.small)
+                                            .accentColor(.blue)
+                                    })
+                                    
+                                }
+                            }
+                            .padding([.top, .bottom], 10)
+                            .padding(.horizontal, 15)
+                            .foregroundStyle(btnGenre.isClicked ? .white : .blue)
+                            .fontWeight(.medium)
+                            .background(btnGenre.isClicked ? .blue : .white)
+                            .clipShape(Capsule())
                         })
                     }
                 }
@@ -76,8 +94,14 @@ struct AllBooksView: View {
         .fontDesign(.rounded)
         .padding(.top, 20)
     }
+    
+    func removeFilters(_ btnGenreList: [Btn]) {
+        for index in btnGenreList.indices {
+            self.btnGenreList[index].isClicked = false
+        }
+    }
 }
 
 #Preview {
-    AllBooksView(booksData: BooksData.sample, btnGenre: [Btn(btnTitle: "fiction", isClicked: false)])
+    AllBooksView(booksData: BooksData.sample, btnGenreList: .constant([Btn(btnTitle: "Fiction", isClicked: false)]))
 }
