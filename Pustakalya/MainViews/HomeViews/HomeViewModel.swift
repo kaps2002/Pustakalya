@@ -6,6 +6,7 @@ class HomeViewModel {
     var userData: Userdata?
     var booksGenreList = [String]()
     var searchTerm: String = ""
+    var btnGenreList = [Btn]()
     
     func fetchBooks() {
         APIManager.shared.fetchBooks(from: "https://pustakalya.vercel.app/api/getBooks", authToken: UserDefaults.standard.string(forKey: "authToken") ?? "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjI5LCJuYW1lIjoia2FyYW4iLCJleHAiOjE3MTk3NDA3NjN9.jVkGzFhUXf0QTyNCH5gOaaZfWuoqfLZ8-bT_rUpNCQc") { [self] (success: Bool, response: BooksData?) in
@@ -16,9 +17,11 @@ class HomeViewModel {
                     if let booksData = booksData {
                         for genres in booksData.data {
                             booksGenreList.append(genres.genre)
+                            btnGenreList.append(Btn(btnTitle: genres.genre, isClicked: false))
                         }
                     }
                 }
+                print(btnGenreList)
             } else {
                 print("data nhi aaya")
             }

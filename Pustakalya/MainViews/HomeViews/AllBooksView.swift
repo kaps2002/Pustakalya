@@ -4,6 +4,7 @@ struct AllBooksView: View {
     
     @State private var homeViewModel = HomeViewModel()
     var booksData: BooksData
+    var btnGenre: [Btn]
     @State private var filters: Set<String> = []
     
     var filteredBooks: [Genre] {
@@ -21,7 +22,6 @@ struct AllBooksView: View {
                 .fontWeight(.semibold)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                
                 HStack(spacing: 15) {
                     Button(action: {
                         filters = []
@@ -34,11 +34,11 @@ struct AllBooksView: View {
                             .background(.blue)
                             .clipShape(Capsule())
                     })
-                    ForEach(booksData.data, id: \.genre) { genres in
+                    ForEach(btnGenre, id: \.btnTitle) { btnGenre in
                         Button(action: {
-                            filters.insert(genres.genre)
+                            filters.insert(btnGenre.btnTitle)
                         }, label: {
-                            Text(genres.genre)
+                            Text(btnGenre.btnTitle)
                                 .padding([.top, .bottom], 10)
                                 .padding(.horizontal, 20)
                                 .foregroundStyle(.white)
@@ -49,7 +49,7 @@ struct AllBooksView: View {
                     }
                 }
             }
-            .padding([.top, .bottom], 12)
+            .padding(.bottom, 12)
             
             LazyVGrid(columns: [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)], spacing: 5) {
                 ForEach(filteredBooks, id: \.genre) { genres in
@@ -67,16 +67,17 @@ struct AllBooksView: View {
                                     .lineLimit(2)
                             }
                             .frame(height: 225)
-                            .padding(.top, 10)
+                            .padding(.bottom, 15)
                         }
                     }
                 }
             }
         }
         .fontDesign(.rounded)
+        .padding(.top, 20)
     }
 }
 
 #Preview {
-    AllBooksView(booksData: BooksData.sample)
+    AllBooksView(booksData: BooksData.sample, btnGenre: [Btn(btnTitle: "fiction", isClicked: false)])
 }

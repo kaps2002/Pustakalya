@@ -1,10 +1,3 @@
-//
-//  BooksData.swift
-//  Pustakalya
-//
-//  Created by Roro on 17/06/24.
-//
-
 import Foundation
 
 struct BooksData: Codable {
@@ -33,4 +26,7 @@ struct Book: Codable {
     var price: Int
 }
 
-
+struct Btn: Codable {
+    var btnTitle: String
+    var isClicked: Bool
+}
