@@ -6,7 +6,7 @@ struct AllBooksView: View {
     var booksData: BooksData
     @Binding var btnGenreList: [Btn]
     @State private var filters: Set<String> = []
-    @State private var isClick: Bool = false
+    @State private var isClick: Bool = true
 //    @State private var btngenre: Btn?
 //
     var filteredBooks: [Genre] {
@@ -26,20 +26,24 @@ struct AllBooksView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
                     Button(action: {
-                        isClick.toggle()
+                        isClick = true
                         removeFilters(btnGenreList)
                         filters = []
                     }, label: {
-                        Text("All Categories")
-                            .padding([.top, .bottom], 10)
-                            .padding(.horizontal, 20)
-                            .foregroundStyle(isClick ? .white : .blue)
-                            .fontWeight(.medium)
-                            .background(isClick ? .blue : .white)
-                            .clipShape(Capsule())
+                        HStack {
+                            Image(systemName: "square.grid.2x2")
+                            Text("All Categories")
+                        }
+                        .padding([.top, .bottom], 10)
+                        .padding(.horizontal, 20)
+                        .foregroundStyle(isClick ? .white : .blue)
+                        .fontWeight(.medium)
+                        .background(isClick ? .blue : .white)
+                        .clipShape(Capsule())
                     })
                     ForEach($btnGenreList, id: \.btnTitle) { $btnGenre in
                         Button(action: {
+                            isClick = false
                             btnGenre.isClicked = true
                             filters.insert(btnGenre.btnTitle)
                         }, label: {
@@ -49,6 +53,9 @@ struct AllBooksView: View {
                                     Button(action: {
                                         btnGenre.isClicked = false
                                         filters.remove(btnGenre.btnTitle)
+                                        if filters.isEmpty {
+                                            isClick = true
+                                        }
                                     }, label: {
                                         Image(systemName: "xmark")
                                             .imageScale(.small)
