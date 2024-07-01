@@ -3,7 +3,7 @@ import SwiftUI
 struct GenreView: View {
     var subTitle: String
     var booksGenreList: [String]
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {
@@ -26,7 +26,9 @@ struct GenreView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(booksGenreList.dropLast(5), id: \.self) { bookgenre in
-                        Button(action: {}, label: {
+                        NavigationLink {
+//                            SelectedGenreView(selectedGenre: )
+                        } label: {
                             ZStack {
                                 Image(bookgenre)
                                     .resizable()
@@ -38,7 +40,7 @@ struct GenreView: View {
                                     .font(.title2)
                                     .fontWeight(.bold)
                             }
-                        })
+                        }
                     }
                 }
                 .padding(.top, 10)

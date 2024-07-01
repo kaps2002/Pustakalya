@@ -10,7 +10,7 @@ struct CategoryView: View {
                     .fontWeight(.semibold)
                 Spacer()
                 NavigationLink {
-                    
+                    SelectedGenreView(selectedGenre: genre)
                 } label: {
                     HStack {
                         Text("More")

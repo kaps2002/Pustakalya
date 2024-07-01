@@ -4,6 +4,7 @@ struct HomeView: View {
     @State private var homeViewModel = HomeViewModel()
     @State private var commonViewModel = CommonViewModel()
     @State private var search = ""
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -43,7 +44,7 @@ struct HomeView: View {
                     
                     VStack {
                         ForEach(homeViewModel.booksData?.data.dropFirst(7) ?? [], id: \.genre) { genre in
-                            CategoryView(genre: genre)
+                            CategoryView(genre: genre) 
                         }
                     }
                 
