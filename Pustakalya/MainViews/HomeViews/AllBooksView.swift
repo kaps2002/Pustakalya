@@ -7,8 +7,9 @@ struct AllBooksView: View {
     @Binding var btnGenreList: [Btn]
     @State private var filters: Set<String> = []
     @State private var isClick: Bool = true
-//    @State private var btngenre: Btn?
-//
+    @State private var isSheetOpen: Bool = false
+    @State private var selectedBook: Book = BooksData.sample.data[0].books[0]
+
     var filteredBooks: [Genre] {
         guard !filters.isEmpty else {
             return booksData.data
@@ -78,13 +79,15 @@ struct AllBooksView: View {
             
             LazyVGrid(columns: [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)], spacing: 5) {
                 ForEach(filteredBooks, id: \.genre) { genres in
-                    ForEach(genres.books, id: \.id) { books in
-                        NavigationLink {
-                            SelectedBookView(books: books)
+                    ForEach(genres.books, id: \.id) { book in
+                        Button {
+                            selectedBook = book
+                            isSheetOpen = true
                         } label: {
                             VStack(alignment: .center, spacing: 10) {
-                                AsyncImageView(bookImg: books.thumbnail)
-                                Text(books.title)
+                                AsyncImageView(bookImg: book.thumbnail)
+                                    .frame(width: 140, height: 200)
+                                Text(book.title)
                                     .foregroundStyle(.black)
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
@@ -94,6 +97,12 @@ struct AllBooksView: View {
                             .frame(height: 225)
                             .padding(.bottom, 15)
                         }
+                        .sheet(isPresented: $isSheetOpen, content: {
+                            SelectedBookView(book: selectedBook, isSheetOpen: $isSheetOpen)
+                                .presentationCornerRadius(20.0)
+                                .presentationDetents([.height(600)])
+                                .foregroundColor(.black)
+                        })
                     }
                 }
             }

@@ -16,7 +16,6 @@ struct AsyncImageView: View {
                 AsyncImage(url: url) { image in
                     image
                         .resizable()
-                        .frame(width: 140, height: 200)
                         .cornerRadius(10.0)
                 } placeholder: {
                     ProgressView()
@@ -25,7 +24,6 @@ struct AsyncImageView: View {
         } else {
             Image("na")
                 .resizable()
-                .frame(width: 140, height: 200)
                 .cornerRadius(10.0)
         }
         

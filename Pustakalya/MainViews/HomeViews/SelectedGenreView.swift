@@ -19,7 +19,7 @@ struct SelectedGenreView: View {
                         } label: {
                             HStack(spacing: 25) {
                                 AsyncImageView(bookImg: books.thumbnail)
-                                
+                                    .frame(width: 140, height: 200)
                                 VStack(alignment: .leading, spacing: 10) {
                                     Spacer()
                                     Text(books.title)

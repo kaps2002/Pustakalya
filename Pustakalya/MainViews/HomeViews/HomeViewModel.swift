@@ -9,7 +9,7 @@ class HomeViewModel {
     var btnGenreList = [Btn]()
     
     func fetchBooks() {
-        APIManager.shared.fetchBooks(from: "https://pustakalya.vercel.app/api/getBooks", authToken: UserDefaults.standard.string(forKey: "authToken") ?? "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjI5LCJuYW1lIjoia2FyYW4iLCJleHAiOjE3MTk5MTU1ODN9.jr0GilEuRg_SbGAhf8_hNfFIywfsy_ma4zAojCqUY_U") { [self] (success: Bool, response: BooksData?) in
+        APIManager.shared.fetchBooks(from: "https://pustakalya.vercel.app/api/getBooks", authToken: UserDefaults.standard.string(forKey: "authToken") ?? "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjI5LCJuYW1lIjoia2FyYW4iLCJleHAiOjE3MjAwMDIxMjB9.rLuif2WCgaGYtkjv5fqmKi0G30gXB68qJ4wGVaVzW8E") { [self] (success: Bool, response: BooksData?) in
             if success {
                 // Handle successful response
                 if let responseData = response {
@@ -21,7 +21,6 @@ class HomeViewModel {
                         }
                     }
                 }
-                print(btnGenreList)
             } else {
                 print("data nhi aaya")
             }
@@ -29,7 +28,7 @@ class HomeViewModel {
     }
     
     func getUser() {
-        APIManager.shared.getUser(from: "https://pustakalya.vercel.app/api/getUserDetails", authToken: UserDefaults.standard.string(forKey: "authToken") ?? "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjI5LCJuYW1lIjoia2FyYW4iLCJleHAiOjE3MTk5MTU1ODN9.jr0GilEuRg_SbGAhf8_hNfFIywfsy_ma4zAojCqUY_U") { [self] (success: Bool, response: Userdata?) in
+        APIManager.shared.getUser(from: "https://pustakalya.vercel.app/api/getUserDetails", authToken: UserDefaults.standard.string(forKey: "authToken") ?? "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjI5LCJuYW1lIjoia2FyYW4iLCJleHAiOjE3MjAwMDIxMjB9.rLuif2WCgaGYtkjv5fqmKi0G30gXB68qJ4wGVaVzW8E") { [self] (success: Bool, response: Userdata?) in
             if success {
                 if let responseData = response {
                     userData = response

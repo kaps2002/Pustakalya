@@ -1,7 +1,10 @@
 import SwiftUI
 
 struct CategoryView: View {
+    @State private var isSheetOpen: Bool = false
     var genre: Genre
+    @State private var selectedBook: Book = BooksData.sample.data[0].books[0]
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {
@@ -24,11 +27,14 @@ struct CategoryView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
                     ForEach(genre.books.dropLast(5), id: \.id) { bookgenre in
-                        NavigationLink {
-                            SelectedBookView(books: bookgenre)
+                        Button {
+                            selectedBook = bookgenre
+                            printing(book: selectedBook)
+                            isSheetOpen = true
                         } label: {
                             VStack(alignment: .center, spacing: 10) {
                                 AsyncImageView(bookImg: bookgenre.thumbnail)
+                                    .frame(width: 140, height: 200)
                                 Text(bookgenre.title)
                                     .foregroundStyle(.black)
                                     .font(.caption)
@@ -37,6 +43,12 @@ struct CategoryView: View {
                                     .lineLimit(2)
                             }
                             .frame(width: 150, height: 225)
+                            .sheet(isPresented: $isSheetOpen, content: {
+                                SelectedBookView(book: selectedBook, isSheetOpen: $isSheetOpen)
+                                    .presentationCornerRadius(20.0)
+                                    .presentationDetents([.height(600)])
+                                    .foregroundColor(.black)
+                            })
                         }
                     }
                 }
@@ -45,13 +57,14 @@ struct CategoryView: View {
             .onAppear {
                 UIScrollView.appearance().bounces = false
             }
-            
         }
         .padding(.top, 10)
-
+    }
+    func printing(book: Book) {
+        print(book)
     }
 }
 
 #Preview {
-    CategoryView(genre: Genre(genre: "Fiction", books: [Book(id: "1", eTag: "abcd", title: "hello", subtitle: "world", genreType: "Fiction", author: "karan", description: "", thumbnail: "http://books.google.com/books/content?id=dFw6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", rating: "4.5", price: 10), Book(id: "1", eTag: "abcd", title: "hello", subtitle: "world", genreType: "Fiction", author: "karan", description: "", thumbnail: "http://books.google.com/books/content?id=dFw6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", rating: "4.5", price: 10)]))
+    CategoryView(genre: Genre(genre: "Fiction", books: [Book(id: "1", eTag: "abcd", title: "hello", subtitle: "world", genreType: "Fiction", author: "karan", description: "", thumbnail: "http://books.google.com/books/content?id=dFw6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", rating: "4.5", price: 10), Book(id: "1", eTag: "abcd", title: "hello", subtitle: "world", genreType: "Horror", author: "karan", description: "", thumbnail: "http://books.google.com/books/content?id=dFw6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", rating: "4.5", price: 10)]))
 }
