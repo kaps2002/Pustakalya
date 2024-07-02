@@ -80,7 +80,7 @@ struct AllBooksView: View {
                 ForEach(filteredBooks, id: \.genre) { genres in
                     ForEach(genres.books, id: \.id) { books in
                         NavigationLink {
-                            
+                            SelectedBookView(books: books)
                         } label: {
                             VStack(alignment: .center, spacing: 10) {
                                 AsyncImageView(bookImg: books.thumbnail)

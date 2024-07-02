@@ -25,7 +25,7 @@ struct CategoryView: View {
                 HStack(spacing: 20) {
                     ForEach(genre.books.dropLast(5), id: \.id) { bookgenre in
                         NavigationLink {
-                            
+                            SelectedBookView(books: bookgenre)
                         } label: {
                             VStack(alignment: .center, spacing: 10) {
                                 AsyncImageView(bookImg: bookgenre.thumbnail)
