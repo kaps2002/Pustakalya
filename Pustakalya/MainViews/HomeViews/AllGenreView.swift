@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AllGenreView: View {
     var booksGenreList: [String]
-    
+
     var body: some View {
         ZStack {
             Color.orange.opacity(0.15)

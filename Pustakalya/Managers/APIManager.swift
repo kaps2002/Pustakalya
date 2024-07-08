@@ -95,4 +95,23 @@ class APIManager {
             }
         }
     }
+    
+    func getBooks(from url: String, authToken: String, completion: @escaping (Bool, Genre?) -> Void) {
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization": "Bearer \(authToken)"]).responseData { response in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let apiData = try JSONDecoder().decode(Genre.self, from: data)
+                    completion(true, apiData)
+                } catch {
+                    print(error,1)
+                    completion(false, nil)
+                }
+            case .failure(let error):
+                print(error,2)
+                completion(false, nil)
+            
+            }
+        }
+    }
 }

@@ -81,8 +81,11 @@ struct AllBooksView: View {
                 ForEach(filteredBooks, id: \.genre) { genres in
                     ForEach(genres.books, id: \.id) { book in
                         Button {
-                            selectedBook = book
-                            isSheetOpen = true
+                            selectBook(book: book) { res in
+                                if res {
+                                    isSheetOpen = true
+                                }
+                            }
                         } label: {
                             VStack(alignment: .center, spacing: 10) {
                                 AsyncImageView(bookImg: book.thumbnail)
@@ -115,6 +118,9 @@ struct AllBooksView: View {
         for index in btnGenreList.indices {
             self.btnGenreList[index].isClicked = false
         }
+    }
+    func selectBook(book: Book, completion: @escaping (Bool) -> Void) {
+        self.selectedBook = book
     }
 }
 

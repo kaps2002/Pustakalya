@@ -27,7 +27,7 @@ struct GenreView: View {
                 HStack(spacing: 10) {
                     ForEach(booksGenreList.dropLast(5), id: \.self) { bookgenre in
                         NavigationLink {
-//                            SelectedGenreView(selectedGenre: )
+                            SelectedGenreView(genre: bookgenre.lowercased())
                         } label: {
                             ZStack {
                                 Image(bookgenre)
@@ -48,7 +48,6 @@ struct GenreView: View {
             .onAppear {
                 UIScrollView.appearance().bounces = false
             }
-            
         }
         .padding(.top, 10)
     }

@@ -198,8 +198,8 @@
 				93DB51FE2C2D907D00D048A5 /* AllGenreView.swift */,
 				934E6CD52C2FD102009A52EC /* AllBooksView.swift */,
 				931D8CE52C32BB6100BD7BC8 /* SelectedGenreView.swift */,
-				936C53F82C2838E200338E5F /* HomeViewModel.swift */,
 				9325A5F42C33C81C00F61B64 /* SelectedBookView.swift */,
+				936C53F82C2838E200338E5F /* HomeViewModel.swift */,
 			);
 			path = HomeViews;
 			sourceTree = "<group>";

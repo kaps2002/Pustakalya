@@ -1,19 +1,20 @@
 import SwiftUI
 
 struct SelectedGenreView: View {
-    var selectedGenre: Genre
-    
+    var genre: String
+    @State private var homeViewModel = HomeViewModel()
+
     var body: some View {
         ZStack {
             Color.orange.opacity(0.15)
                 .ignoresSafeArea()
             VStack(alignment: .leading) {
-                Text(selectedGenre.genre)
+                Text(homeViewModel.genreBooks?.genre.capitalized ?? "")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     
                 ScrollView {
-                    ForEach(selectedGenre.books, id: \.id) { books in
+                    ForEach(homeViewModel.genreBooks?.books ?? [], id: \.id) { books in
                         NavigationLink {
                             
                         } label: {
@@ -27,7 +28,9 @@ struct SelectedGenreView: View {
                                     Text("by \(books.author)")
                                         .font(.subheadline)
                                     VStack(alignment: .leading, spacing: 10) {
-                                        Text(books.subtitle)
+                                        if !books.subtitle.isEmpty {
+                                            Text(books.subtitle)
+                                        }
                                         Text("Genre: \(books.genreType)")
                                         Text("Price: ₹\(books.price)")
                                             .foregroundStyle(.secondary)
@@ -51,9 +54,12 @@ struct SelectedGenreView: View {
             .padding(.horizontal, 20)
         }
         .fontDesign(.rounded)
+        .task {
+            homeViewModel.getGenre(genre: genre)
+        }
     }
 }
 
 #Preview {
-    SelectedGenreView(selectedGenre: BooksData.sample.data[0])
+    SelectedGenreView(genre: "Fiction")
 }
