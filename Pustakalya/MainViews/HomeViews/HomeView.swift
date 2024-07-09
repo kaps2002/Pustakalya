@@ -44,7 +44,7 @@ struct HomeView: View {
                     
                     VStack {
                         ForEach(homeViewModel.booksData?.data.dropFirst(7) ?? [], id: \.genre) { genre in
-                            CategoryView(genre: genre) 
+                            CategoryView(genre: genre)
                         }
                     }
                 

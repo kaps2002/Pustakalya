@@ -80,12 +80,8 @@ struct AllBooksView: View {
             LazyVGrid(columns: [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)], spacing: 5) {
                 ForEach(filteredBooks, id: \.genre) { genres in
                     ForEach(genres.books, id: \.id) { book in
-                        Button {
-                            selectBook(book: book) { res in
-                                if res {
-                                    isSheetOpen = true
-                                }
-                            }
+                        NavigationLink {
+                            SelectedBookView(book: book)
                         } label: {
                             VStack(alignment: .center, spacing: 10) {
                                 AsyncImageView(bookImg: book.thumbnail)
@@ -100,12 +96,6 @@ struct AllBooksView: View {
                             .frame(height: 225)
                             .padding(.bottom, 15)
                         }
-                        .sheet(isPresented: $isSheetOpen, content: {
-                            SelectedBookView(book: selectedBook, isSheetOpen: $isSheetOpen)
-                                .presentationCornerRadius(20.0)
-                                .presentationDetents([.height(600)])
-                                .foregroundColor(.black)
-                        })
                     }
                 }
             }
@@ -118,9 +108,6 @@ struct AllBooksView: View {
         for index in btnGenreList.indices {
             self.btnGenreList[index].isClicked = false
         }
-    }
-    func selectBook(book: Book, completion: @escaping (Bool) -> Void) {
-        self.selectedBook = book
     }
 }
 

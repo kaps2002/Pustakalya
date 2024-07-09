@@ -13,10 +13,10 @@ struct SelectedGenreView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     ForEach(homeViewModel.genreBooks?.books ?? [], id: \.id) { books in
                         NavigationLink {
-                            
+                            SelectedBookView(book: books)
                         } label: {
                             HStack(spacing: 25) {
                                 AsyncImageView(bookImg: books.thumbnail)

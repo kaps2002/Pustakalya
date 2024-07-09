@@ -15,7 +15,7 @@ struct AllGenreView: View {
                 ScrollView(showsIndicators: false) {
                     ForEach(booksGenreList, id: \.self) { bookgenre in
                         NavigationLink {
-                            
+                            SelectedGenreView(genre: bookgenre.lowercased())
                         } label: {
                             ZStack {
                                 Image(bookgenre)

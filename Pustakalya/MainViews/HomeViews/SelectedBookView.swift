@@ -2,18 +2,23 @@ import SwiftUI
 
 struct SelectedBookView: View {
     var book: Book
-    @Binding var isSheetOpen: Bool
     @State private var items = 1
 
     var body: some View {
         ZStack {
             Color.orange.opacity(0.15)
                 .ignoresSafeArea()
-            ScrollView {
+            ScrollView(showsIndicators: false)  {
                 VStack(alignment: .leading) {
                     ZStack(alignment: .topLeading) {
-                        AsyncImageView(bookImg: book.thumbnail)
-                            .frame(height: 400)
+                        Rectangle()
+                            .fill(.white.opacity(0.75))
+                            .frame(height: 450)
+                            .overlay(
+                                AsyncImageView(bookImg: book.thumbnail)
+                                    .frame(width: 280, height: 400)
+                            )
+                            
                         
                         HStack {
                             Button(action: {
@@ -24,20 +29,12 @@ struct SelectedBookView: View {
                                     .foregroundColor(.red)
                             })
                             Spacer()
-                            Button(action: {
-                                isSheetOpen = false
-                            }, label: {
-                                Image(systemName: "xmark")
-                                    .imageScale(.medium)
-                                    .foregroundColor(.black)
-                                    .background(Circle().fill(.white.opacity(0.75)).frame(width: 30, height: 30))
-                            })
                         }
                         .padding()
                     }
+//                    .padding(.horizontal, 50)
                     
                     VStack(alignment: .leading, spacing: 10) {
-                        
                         Text(book.genreType.capitalized)
                             .foregroundStyle(.blue)
                             .fontWeight(.semibold)
@@ -79,5 +76,5 @@ struct SelectedBookView: View {
 }
 
 #Preview {
-    SelectedBookView(book: BooksData.sample.data[0].books[0], isSheetOpen: .constant(false))
+    SelectedBookView(book: BooksData.sample.data[0].books[0])
 }

@@ -27,10 +27,8 @@ struct CategoryView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
                     ForEach(genre.books.dropLast(5), id: \.id) { bookgenre in
-                        Button {
-                            selectedBook = bookgenre
-                            printing(book: selectedBook)
-                            isSheetOpen = true
+                        NavigationLink {
+                            SelectedBookView(book: bookgenre)
                         } label: {
                             VStack(alignment: .center, spacing: 10) {
                                 AsyncImageView(bookImg: bookgenre.thumbnail)
@@ -43,12 +41,6 @@ struct CategoryView: View {
                                     .lineLimit(2)
                             }
                             .frame(width: 150, height: 225)
-                            .sheet(isPresented: $isSheetOpen, content: {
-                                SelectedBookView(book: selectedBook, isSheetOpen: $isSheetOpen)
-                                    .presentationCornerRadius(20.0)
-                                    .presentationDetents([.height(600)])
-                                    .foregroundColor(.black)
-                            })
                         }
                     }
                 }
