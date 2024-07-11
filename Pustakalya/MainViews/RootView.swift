@@ -12,9 +12,9 @@ struct RootView: View {
                 .tabItem {
                     Label("Wishlist", systemImage: "heart")
                 }
-            ProfileView()
+            AddtoCartView()
                 .tabItem {
-                    Label("Profile", systemImage: "person.fill")
+                    Label("Cart", systemImage: "cart")
                 }
         }
         .accentColor(.orange)

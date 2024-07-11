@@ -18,6 +18,11 @@ struct HomeView: View {
                             .fontWeight(.semibold)
                             .fontDesign(.rounded)
                         Spacer()
+                        NavigationLink {
+                            
+                        } label: {
+                            
+                        }
                     }
                     
                     HStack {

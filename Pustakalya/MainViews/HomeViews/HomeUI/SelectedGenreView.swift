@@ -34,8 +34,8 @@ struct SelectedGenreView: View {
                                         Text("Genre: \(books.genreType)")
                                         Text("Price: ₹\(books.price)")
                                             .foregroundStyle(.secondary)
-                                        Text("Rating: \(books.rating) ⭐️")
-                                            .foregroundStyle(.secondary)
+//                                        RatingView(rating: books.rating)
+                                        Text("Rating: \(books.rating)")
                                     }
                                     .font(.subheadline)
                                     Spacer()
