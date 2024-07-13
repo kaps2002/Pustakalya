@@ -11,7 +11,7 @@ struct ProfileView: View {
     @State private var homeViewModel = HomeViewModel()
     @State private var commonViewModel = CommonViewModel()
     @State private var isEditSheet = false
-    
+    var color: Color
     var body: some View {
         ZStack {
             Color.orange.opacity(0.15)
@@ -19,7 +19,7 @@ struct ProfileView: View {
             VStack {
                 if let name = homeViewModel.userData?.data.name, let email = homeViewModel.userData?.data.email  {
                     VStack(spacing: 25) {
-                        ProfileImgView(name: name, width: 100, height: 100, fontSize: 36)
+                        ProfileImgView(name: name, width: 100, height: 100, fontSize: 36, color: color)
                         VStack {
                             Text(name)
                                 .font(.title2)
@@ -42,6 +42,7 @@ struct ProfileView: View {
                         })
                     }
                 }
+                
                 List {
                     Label("Settings", systemImage: "gearshape.fill")
                     Label("Address", systemImage: "map.fill")
@@ -53,17 +54,17 @@ struct ProfileView: View {
                             .foregroundColor(.red)
                     })
                 }
-                .frame(height: 350)
                 .fontWeight(.regular)
                 .scrollContentBackground(.hidden)
                 
                 Spacer()
                 
-                Text("Made with love by Karan & Shlok ❤️")
-                    .foregroundStyle(.secondary)
+                Text("Made by Karan & Shlok 🚀")
+                    .foregroundStyle(.gray)
             }
             .padding(.top, 50)
         }
+        .redacted(reason: homeViewModel.userData == nil ? .placeholder : [])
         .sheet(isPresented: $isEditSheet, content: {
             ProgressView()
                 .presentationDragIndicator(.visible)
@@ -81,5 +82,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(color: .blue)
 }

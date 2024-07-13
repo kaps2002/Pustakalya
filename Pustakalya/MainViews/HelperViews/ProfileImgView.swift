@@ -12,6 +12,7 @@ struct ProfileImgView: View {
     var width: Double
     var height: Double
     var fontSize: Double
+    var color: Color
 
     var body: some View {
         Text("\(name.dropLast(name.count-1))")
@@ -19,7 +20,7 @@ struct ProfileImgView: View {
             .foregroundStyle(.black)
             .background(
                 Circle()
-                    .fill(Color.random())
+                    .fill(color)
                     .frame(width: width, height: height)
             )
     }
@@ -37,5 +38,5 @@ public extension Color {
 }
 
 #Preview {
-    ProfileImgView(name: "Karan Pandey", width: 20, height: 20, fontSize: 30)
+    ProfileImgView(name: "Karan Pandey", width: 20, height: 20, fontSize: 30, color: .blue)
 }

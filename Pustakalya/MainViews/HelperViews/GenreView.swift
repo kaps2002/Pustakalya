@@ -24,7 +24,7 @@ struct GenreView: View {
             }
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
+                LazyHStack(spacing: 10) {
                     ForEach(booksGenreList.dropLast(5), id: \.self) { bookgenre in
                         NavigationLink {
                             SelectedGenreView(genre: bookgenre.lowercased())
