@@ -10,7 +10,7 @@ struct RootView: View {
                 }
             FavoriteView()
                 .tabItem {
-                    Label("Wishlist", systemImage: "heart")
+                    Label("My  Wishlist", systemImage: "heart")
                 }
             AddtoCartView()
                 .tabItem {

@@ -19,10 +19,11 @@ struct HomeView: View {
                             .fontDesign(.rounded)
                         Spacer()
                         NavigationLink {
-                            
+                            ProfileView()
                         } label: {
-                            
+                            ProfileImgView(name: homeViewModel.userData?.data.name.capitalized ?? "hello", width: 45, height: 45, fontSize: 24)
                         }
+                        .padding(.horizontal)
                     }
                     
                     HStack {
