@@ -39,8 +39,11 @@ struct HomeView: View {
                             AllBooksView(booksData: homeViewModel.booksData ?? BooksData.sample, btnGenreList: $homeViewModel.btnGenreList)
 
                         } else {
-                            AllBooksView(booksData: filteredBooks, btnGenreList: $homeViewModel.btnGenreList)
-                                .padding(.top)
+                            withAnimation(.easeInOut(duration: 1.0).delay(0.5)) {
+                                AllBooksView(booksData: filteredBooks, btnGenreList: $homeViewModel.btnGenreList)
+                                    .padding(.top)
+                            }
+                            
                         }
                     }
                     .padding(.horizontal, 15)

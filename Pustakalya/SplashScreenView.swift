@@ -41,7 +41,11 @@ struct SplashScreenView: View {
                 }
             }
         } else {
-            SignInView()
+            if UserDefaults.standard.string(forKey: "authToken") != nil {
+                HomeView()
+            } else {
+                SignInView()
+            }
         }
     }
 }

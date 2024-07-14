@@ -49,7 +49,9 @@ struct ProfileView: View {
                     Label("My Orders", systemImage: "menucard.fill")
                     Label("Change Password", systemImage: "lock.fill")
                     Label("LogOut", systemImage: "rectangle.portrait.and.arrow.forward.fill")
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    Button(action: {
+                        
+                    }, label: {
                         Label("Delete Account", systemImage: "xmark.bin.fill")
                             .foregroundColor(.red)
                     })
