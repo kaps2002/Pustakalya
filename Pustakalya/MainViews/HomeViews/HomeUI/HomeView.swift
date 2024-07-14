@@ -1,11 +1,21 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     @State private var homeViewModel = HomeViewModel()
     @State private var commonViewModel = CommonViewModel()
-    @State private var search = ""
+    @State private var searchTerm = ""
     @FocusState private var isSearching: Bool
     @State private var color: Color?
+    
+    var filteredBooks: BooksData {
+        if searchTerm == "" {
+            return homeViewModel.booksData ?? BooksData.sample
+        } else {
+            return homeViewModel.searchBooks(search: searchTerm)
+        }
+    }
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -14,7 +24,7 @@ struct HomeView: View {
                 
                 ScrollView(showsIndicators: false) {
                     LazyVStack {
-                        if search.isEmpty {
+                        if !isSearching {
                             GenreView(subTitle: "Explore All Genres", booksGenreList: homeViewModel.booksGenreList)
                             
                             VStack {
@@ -27,6 +37,10 @@ struct HomeView: View {
                                 .padding(.top, 10)
                             
                             AllBooksView(booksData: homeViewModel.booksData ?? BooksData.sample, btnGenreList: $homeViewModel.btnGenreList)
+
+                        } else {
+                            AllBooksView(booksData: filteredBooks, btnGenreList: $homeViewModel.btnGenreList)
+                                .padding(.top)
                         }
                     }
                     .padding(.horizontal, 15)
@@ -51,13 +65,14 @@ struct HomeView: View {
                                 HStack {
                                     Image(systemName: "magnifyingglass")
                                         .foregroundColor(.black.opacity(0.8))
-                                    TextField("Search Books", text: $search)
+                                    TextField("Search Books", text: $searchTerm)
                                         .keyboardType(.default)
                                         .focused($isSearching)
                                     
                                     if isSearching {
                                         Button {
                                             isSearching = false
+                                            searchTerm = ""
                                         } label: {
                                             Text("Cancel")
                                                 .foregroundStyle(.blue)
@@ -72,7 +87,7 @@ struct HomeView: View {
                                 .frame(height: 40)
                                 .clipShape(.capsule)
                                 .background {
-                                    RoundedRectangle(cornerRadius: 25 - (progress * 25))
+                                    RoundedRectangle(cornerRadius: 25 - (progress * 10))
                                         .fill(.background)
                                         .shadow(color: .black.opacity(0.25), radius: 10, x: 0, y: 5)
                                         .padding(.top, -progress * 250)

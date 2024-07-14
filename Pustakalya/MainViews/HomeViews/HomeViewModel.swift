@@ -5,9 +5,9 @@ class HomeViewModel {
     var booksData: BooksData?
     var userData: Userdata?
     var booksGenreList = [String]()
-    var searchTerm: String = ""
     var btnGenreList = [Btn]()
     var genreBooks: Genre?
+    
     
     func fetchBooks() {
         APIManager.shared.fetchBooks(from: "https://pustakalya.vercel.app/api/getBooks/allBooks", authToken: UserDefaults.standard.string(forKey: "authToken") ?? "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjMzLCJuYW1lIjoiWW95byJ9.tbu8SuxCItC-7upM0TBDbtuUc6hs2drfZ9QcOep4NA4") { [self] (success: Bool, response: BooksData?) in
@@ -62,5 +62,25 @@ class HomeViewModel {
             }
         }
         return temp
+    }
+    
+    func searchBooks(search: String) -> BooksData {
+        var filteredBooksData: BooksData = BooksData(data: [])
+        guard let booksData = booksData else {
+            return BooksData.sample
+        }
+        for genre in booksData.data {
+            var searchGenre: Genre = Genre(genre: "", books: [])
+            for book in genre.books {
+                if book.title.lowercased().contains(search.lowercased()) {
+                    searchGenre.genre = genre.genre
+                    searchGenre.books.append(book)
+                }
+            }
+            if !searchGenre.books.isEmpty {
+                filteredBooksData.data.append(searchGenre)
+            }
+        }
+        return filteredBooksData
     }
 }
