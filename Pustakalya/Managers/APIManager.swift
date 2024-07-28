@@ -11,7 +11,7 @@ import Alamofire
 class APIManager {
     static let shared = APIManager()
     
-    func request (from url: String, method: HTTPMethod = .post, parameters: Parameters?, completion: @escaping (Bool, AuthModelData?) -> Void) {
+    func request(from url: String, method: HTTPMethod = .post, parameters: Parameters?, completion: @escaping (Bool, AuthModelData?) -> Void) {
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
             switch response.result {
             case .success(let data):
@@ -111,6 +111,20 @@ class APIManager {
                 print(error,2)
                 completion(false, nil)
             
+            }
+        }
+    }
+    
+    func deleteUser(from url: String, authToken: String, completion: @escaping (Bool) -> Void) {
+        AF.request(url, method: .post, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization": "Bearer \(authToken)"]).responseData {
+            response in
+            if let statusCode = response.response?.statusCode {
+                if (400...599).contains(statusCode) {
+                    completion(false)
+                }
+                else {
+                    completion(true)
+                }
             }
         }
     }

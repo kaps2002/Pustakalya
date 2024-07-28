@@ -32,7 +32,7 @@ class AuthViewModel {
                 // Handle successful response
                 if let responseData = response {
                     signInModelData = responseData
-                    UserDefaults.standard.setValue(signInModelData?.token, forKey: "authToken")
+                    UserDefaults.standard.setValue(signInModelData?.token, forKey: "c")
                     completion(true)
                 }
             } else {

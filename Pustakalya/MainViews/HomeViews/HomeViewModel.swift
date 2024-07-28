@@ -52,6 +52,20 @@ class HomeViewModel {
         }
     }
     
+    func logout() {
+        UserDefaults.standard.removeObject(forKey: "authToken")
+    }
+    
+    func deleteUser(completion: @escaping (Bool) -> Void) {
+        APIManager.shared.deleteUser(from: "https://pustakalya.vercel.app/api/deleteUser", authToken: UserDefaults.standard.string(forKey: "authToken") ?? "") { res in
+            if res {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
     func filteredBooks(filters: Set<String>, booksData: BooksData) -> [Genre] {
         var temp: [Genre] = []
         for filter in filters {

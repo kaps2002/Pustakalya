@@ -38,6 +38,7 @@
 		937F83242C403F8C00D2E10A /* ProfileImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F83232C403F8C00D2E10A /* ProfileImgView.swift */; };
 		93D4C29B2C4032F1001298DF /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4C29A2C4032F1001298DF /* RatingView.swift */; };
 		93D4C29E2C4034B4001298DF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4C29D2C4034B4001298DF /* ProfileView.swift */; };
+		93D644BC2C443CAD006ADE6C /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D644BB2C443CAD006ADE6C /* EditProfileView.swift */; };
 		93DB51FF2C2D907D00D048A5 /* AllGenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DB51FE2C2D907D00D048A5 /* AllGenreView.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		937F83232C403F8C00D2E10A /* ProfileImgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgView.swift; sourceTree = "<group>"; };
 		93D4C29A2C4032F1001298DF /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		93D4C29D2C4034B4001298DF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		93D644BB2C443CAD006ADE6C /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		93DB51FE2C2D907D00D048A5 /* AllGenreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGenreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				93D4C29D2C4034B4001298DF /* ProfileView.swift */,
+				93D644BB2C443CAD006ADE6C /* EditProfileView.swift */,
 			);
 			path = ProfileUI;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				932880462C2DD81500A92FE0 /* CategoryView.swift in Sources */,
 				93668B842C21640E00D2D02D /* GenreView.swift in Sources */,
 				937CFAE52C21A83A00E2D73E /* VerifyTokenView.swift in Sources */,
+				93D644BC2C443CAD006ADE6C /* EditProfileView.swift in Sources */,
 				93DB51FF2C2D907D00D048A5 /* AllGenreView.swift in Sources */,
 				933300F12C1F4E83006C0B9D /* SignInModelData.swift in Sources */,
 				9325A5F52C33C81C00F61B64 /* SelectedBookView.swift in Sources */,
